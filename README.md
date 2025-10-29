@@ -41,6 +41,7 @@ that outputs a `data.json` feed, rendering a live tactical display using **Pytho
 - Multi-layer layout modeled after military/ATC displays
     
 
+
 ---
 
 ## How It Works
@@ -50,7 +51,8 @@ that outputs a `data.json` feed, rendering a live tactical display using **Pytho
 - Decoders like **dump1090** or **tar1090** output aircraft data as `data.json`.
     
 - ADSB-Station reads the JSON and renders it in real time using **Pygame**.
-    
+
+![[Screenshot From 2025-10-28 12-08-04.png]]
 
 ---
 
@@ -63,3 +65,4 @@ that outputs a `data.json` feed, rendering a live tactical display using **Pytho
 `M` Military-only filter  
 `N` Change color palette  
 `ESC` Exit
+
