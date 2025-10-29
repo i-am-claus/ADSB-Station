@@ -52,8 +52,6 @@ that outputs a `data.json` feed, rendering a live tactical display using **Pytho
     
 - ADSB-Station reads the JSON and renders it in real time using **Pygame**.
 
-![[Screenshot From 2025-10-28 12-08-04.png]]
-
 ---
 
 ## Controls
