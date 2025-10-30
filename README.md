@@ -75,6 +75,7 @@ The result is a live, polar-style radar centered on your station, displaying all
 
 - **The python script contains configuration parameters for full user customization, you can use any text editor to modify these values (advice varies based on text editor used)**
 
+
 			sudo nano ADSB-Station.py
 
 **or**
