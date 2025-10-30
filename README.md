@@ -75,15 +75,15 @@ The result is a live, polar-style radar centered on your station, displaying all
 
 - **The python script contains configuration parameters for full user customization, you can use any text editor to modify these values (advice varies based on text editor used)**
 
-		sudo nano ADSB-Station.py
+			sudo nano ADSB-Station.py
 
-or
+**or**
 
-		sudo vim ADSB-Station.py
+			sudo vim ADSB-Station.py
 
-or
+**or**
 
-		sudo vi ADSB-Station.py
+			sudo vi ADSB-Station.py
 ## Station Name ✈︎
 
 		   SITE_NAME="YOUR STATION NAME"
