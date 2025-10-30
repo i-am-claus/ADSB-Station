@@ -73,7 +73,7 @@ The result is a live, polar-style radar centered on your station, displaying all
 
 ## How to configure ⛯
 
-- **The python script contains configuration parameters for full user customization, you can use any text editor to modify these values (advice varies based on text editor used)**
+**The python script contains configuration parameters for full user customization, you can use any text editor to modify these values (advice varies based on text editor used)**
 
 
 		sudo nano ADSB-Station.py
@@ -92,28 +92,28 @@ The result is a live, polar-style radar centered on your station, displaying all
 
 ## Coordinates (Longitude/Latitude) ⏲
 
-- **Input your Latitude**
+**Input your Latitude**
 
 		 SITE_LAT="CURRENT LATITUDE"
 
-- **Input your Longitude**
+**Input your Longitude**
 
 		 SITE_LON="CURRENT LONGITUDE
 
 ## Station UI font size ⌞ ⌝
 
-		UI_PX 
+		UI_PX=
 
 ## Radar Compass font size ⏱
 
-		RING_PX = Font Size for [RADAR COMPASS]
+		RING_PX=
 
 ## Delta ICAO font positioning ➤
 
-- **(x+) Change X-AXIS POS, (y)- Y-AXIS-POS**
+**(x+) Change X-AXIS POS, (y)- Y-AXIS-POS**
 
 		(tag_font.render(cs,True,WHITE),(x+23,y-12)
 
 ## Adjusting (Trail Width) ╰┈➤
 
-		TRAIL_WIDTH
+		TRAIL_WIDTH=
