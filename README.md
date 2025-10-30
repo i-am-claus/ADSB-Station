@@ -77,9 +77,11 @@ The result is a live, polar-style radar centered on your station, displaying all
 
 		sudo nano ADSB-Station.py
 
+or
 
 		sudo vim ADSB-Station.py
 
+or
 
 		sudo vi ADSB-Station.py
 ## Station Name ✈︎
