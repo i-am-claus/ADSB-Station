@@ -75,15 +75,16 @@ The result is a live, polar-style radar centered on your station, displaying all
 
 - **The python script contains configuration parameters for full user customization, you can use any text editor to modify these values (advice varies based on text editor used)**
 
-		 sudo nano ADSB-Station.py
+		sudo nano ADSB-Station.py
 
-		 sudo vi ADSB-Station.py
 
-		 sudo vim ADSB-Station.py
+		sudo vim ADSB-Station.py
 
+
+		sudo vi ADSB-Station.py
 ## Station Name ✈︎
 
-		SITE_NAME="YOUR STATION NAME"
+		   SITE_NAME="YOUR STATION NAME"
 
 ## Coordinates (Longitude/Latitude) ⏲
 
@@ -112,46 +113,3 @@ The result is a live, polar-style radar centered on your station, displaying all
 ## Adjusting (Trail Width) ╰┈➤
 
 		TRAIL_WIDTH
-
-## How to configure ⛯
-
-- **The python script contains configuration parameters for full user customization, you can use any text editor to modify these values (advice varies based on text editor used)**
-
-		 sudo nano ADSB-Station.py
-		 
-		 sudo vi ADSB-Station.py
-		
-		 sudo vim ADSB-Station.py
-
-## Station Name ✈︎
-
-		SITE_NAME="YOUR STATION NAME"
-
-## Coordinates (Longitude/Latitude) ⏲
-
-- **Input your Latitude**
-
-		 SITE_LAT="CURRENT LATITUDE"
-
-- **Input your Longitude**
-
-		 SITE_LON="CURRENT LONGITUDE
-
-## Station UI font size ⌞ ⌝
-
-		UI_PX 
-
-## Radar Compass font size ⏱
-
-		RING_PX = Font Size for [RADAR COMPASS]
-
-## Delta ICAO font positioning ➤
-
-- **(x+) Change X-AXIS POS, (y)- Y-AXIS-POS**
-
-		(tag_font.render(cs,True,WHITE),(x+23,y-12)
-
-## Adjusting (Trail Width) ╰┈➤
-
-		TRAIL_WIDTH
-
