@@ -3,7 +3,7 @@
 ## Project Background
 ---
 
-**ADSB-Station** is a modern reinterpretation of [nicespoon’s _retro-adsb-radar_](https://github.com/nicespoon/retro-adsb-radar).  _retro-adsb-radar_ built for **Raspberry Pi** and **tar1090** with a classic CRT-style display, ADSB-Station extends the concept for **desktops, laptops, and small Pi displays** using dump1090 by default.
+**ADSB-Station** is a modern reinterpretation of [nicespoon’s _retro-adsb-radar_](https://github.com/nicespoon/retro-adsb-radar).  _retro-adsb-radar_ built for **Raspberry Pi's** and **tar1090** with a classic CRT-style display, ADSB-Station extends the concept for **desktops, laptops, and small Pi displays** using dump1090 by default.
 
 It maintains the **military aviation aesthetic** while adding modern functionality.  
 
