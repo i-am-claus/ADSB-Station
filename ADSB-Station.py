@@ -521,7 +521,6 @@ def toggle_fullscreen():
 def main():
     running = True
 
-    # start the background polling thread
     t = threading.Thread(target=_poll_loop, daemon=True)
     t.start()
 
@@ -532,12 +531,10 @@ def main():
             elif e.type == pygame.KEYDOWN:
                 handle_key(e.key)
 
-        # no blocking fetch here anymore
         draw_scene()
         pygame.display.flip()
         clock.tick(FPS)
 
-    # stop background thread cleanly
     _stop_evt.set()
     t.join(timeout=1.0)
     pygame.quit()
