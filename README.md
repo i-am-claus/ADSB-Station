@@ -22,7 +22,7 @@ The software uses the configured station coordinates to calculate each aircraft�
 
 - `SITE_LAT` and `SITE_LON` define the fixed geographic location of the station.
 
-The result is a live, polar-style radar centered on your station, displaying all detected aircraft in real time.
+The result is a live, polar-style radar centered on your station, displaying all detected aircraft in real time through **pygame**.
 
 ---
 ## Design
@@ -68,29 +68,55 @@ The result is a live, polar-style radar centered on your station, displaying all
 `ESC` Exit
 
 ---
-## Configuration
+## Requirements
 ---
 
+- Laptop, (Android) Tablet running Linux, Single Board Computer, or Desktop.
+	
+- RTL-SDR Dongle (Software Defined Radio)
+	
+- dump1090 or tar1090 for live data.json outputs
+	
+- 1090 mhz antenna, or 1GHZ-2.4GHZ antenna. 
+
+---
+## How to Install Pygame
+---
+
+- **Debian or Ubuntu (Dependencies)**
+
+		 sudo apt install pip && python3
+
+- **Fedora or RHEL (Dependencies)**
+
+		 sudo dnf install pip && python3
+
+- **Install Pygame** 
+
+		python3 -m pip install -U pygame --user
+---
+## How to use the script?
+---
+
+		python3 ADSB-Station.py
+
+- **Note:** You must have **dump1090** or **tar1090** running to display live aircraft data while the script is active.
+
+---
 ## How to configure ⛯
+---
 
-**The python script contains configuration parameters for full user customization, you can use any text editor to modify these values (advice varies based on text editor used)**
+**The python script contains configuration parameters for full user customization, you can use any text editor to modify the values (advice varies based on text editor used)**
 
-
-		sudo nano ADSB-Station.py
-
-**or**
-
-		sudo vim ADSB-Station.py
-
-**or**
-
-		sudo vi ADSB-Station.py
-
+---
 ## Station Name ✈︎
+---
 
 		   SITE_NAME="YOUR STATION NAME"
 
+---
 ## Coordinates (Longitude/Latitude) ⏲
+---
 
 **Input your Latitude**
 
@@ -100,20 +126,28 @@ The result is a live, polar-style radar centered on your station, displaying all
 
 		 SITE_LON="CURRENT LONGITUDE
 
+---
 ## Station UI font size ⌞ ⌝
+---
 
 		UI_PX=
 
+---
 ## Radar Compass font size ⏱
+---
 
 		RING_PX=
 
+---
 ## Delta ICAO font positioning ➤
+---
 
 **(x+) Change X-AXIS POS, (y)- Y-AXIS-POS**
 
 		(tag_font.render(cs,True,WHITE),(x+23,y-12)
 
+---
 ## Adjusting (Trail Width) ╰┈➤
+---
 
 		TRAIL_WIDTH=
