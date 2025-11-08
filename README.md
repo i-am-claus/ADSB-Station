@@ -35,8 +35,6 @@ The result is a live, polar-style radar centered on your station, displaying all
 ## Color Schemes
 ---
 
----
-
 **LIGHTNING**
 
 ---
