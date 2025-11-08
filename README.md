@@ -31,6 +31,8 @@ The result is a live, polar-style radar centered on your station, displaying all
     
 - Multi-layer layout modeled after Military/ATC displays
 
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/0b76dd52-f0c6-49ef-9298-045365bfc3d6" />
+
 ----
 ## Key Features
 ---
