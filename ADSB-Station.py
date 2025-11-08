@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-# ADSB Station
+#
+# ADSB Station / https://github.com/i-am-claus / 
+# 
 #-----------------------------------------------------------------------------------------------------------------------------------
 #           :::     :::::::::   ::::::::  :::::::::         :::::::: ::::::::::: ::: ::::::::::: ::::::::::: ::::::::  ::::    :::
 #        :+: :+:   :+:    :+: :+:    :+: :+:    :+:       :+:    :+:    :+:   :+: :+:   :+:         :+:    :+:    :+: :+:+:   :+: 
@@ -225,7 +227,7 @@ def draw_top():
 #   left=f"ADSB STATION  |  LINK: {'ACTIVE' if aircraft else 'NO DATA'}  |  TRACKS: {len(aircraft)}  |  RANGE: {rng} NM  |  ALT BAND: ALL  |"
 #   mid =f"  TRAILS {'ON' if trails_on else 'OFF'}  |  DECLUTTER {'ON' if declutter else 'OFF'}  |  {'MILITARY' if mil_only else 'ALL'}"
 #   blit(ui_font,left+mid,C("MINT"),(12,bottbar_rect.y+(bottbar_rect.h-ui_font.get_height())//2))
-    # FPS removed per request
+    # FPS removed          
 def draw_bottom():
     pygame.draw.rect(screen, C("BG"), bottbar_rect)
     rng = current_range_nm()
