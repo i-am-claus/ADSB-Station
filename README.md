@@ -33,6 +33,11 @@ The result is a live, polar-style radar centered on your station, displaying all
 
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/0b76dd52-f0c6-49ef-9298-045365bfc3d6" />
 
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/71823e1f-5403-4226-ab00-edc5bd06caa8" />
+
+
+
+
 ----
 ## Key Features
 ---
