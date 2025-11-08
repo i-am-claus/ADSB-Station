@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-#
-# ADSB Station / https://github.com/i-am-claus / 
-# 
+# ADSB Station
 #-----------------------------------------------------------------------------------------------------------------------------------
 #           :::     :::::::::   ::::::::  :::::::::         :::::::: ::::::::::: ::: ::::::::::: ::::::::::: ::::::::  ::::    :::
 #        :+: :+:   :+:    :+: :+:    :+: :+:    :+:       :+:    :+:    :+:   :+: :+:   :+:         :+:    :+:    :+: :+:+:   :+: 
@@ -15,6 +13,22 @@
 # ---------------------------------------------------------------------------------------------------------------------------------
 
 import math, time, json, urllib.request, collections, pygame, os
+# --- Async Polling Thread (prevents render stutter) ---
+import threading
+
+_air_lock = threading.Lock()
+_stop_evt  = threading.Event()
+
+def _poll_loop():
+    """Poll dump1090 in the background and update `aircraft` safely."""
+    while not _stop_evt.is_set():
+        try:
+            data = preprocess(fetch_adsb())
+            with _air_lock:
+                aircraft[:] = data  
+        except Exception:
+            pass
+        _stop_evt.wait(POLL_SECS)  
 
 # ---------------- Config ----------------
 DUMP_URL   = "http://localhost:8080/data.json"
@@ -51,7 +65,7 @@ COL_FRAC = [0.02, 0.12, 0.34, 0.55, 0.70, 0.85, 0.93]  # RIGHT UI SPACING
 
 TRAIL_MAX_POINTS = 1500
 TRAIL_KEEP_SEC   = 86400
-TRAIL_WIDTH      = 3  # TRAIL SIZE/WIDTH
+TRAIL_WIDTH      = 2  # TRAIL SIZE/WIDTH
 MAX_HOP_NM       = 6.0
 MAX_SAMPLE_GAP   = 14.0
 MAX_SEG_PX       = 1200
@@ -65,7 +79,7 @@ RING_STEPS     = 6
 RADAR_INSET    = 24
 COMPASS_GUTTER = 18
 
-DELTA_SIZE_PX = 16  # DELTA SIZE (RADAR)
+DELTA_SIZE_PX = 12  # DELTA SIZE (RADAR)
 DELTA_LINE_W  = 2
 DELTA_DOT_R   = 2
 
@@ -126,7 +140,7 @@ center     = (0,0)
 radius_px  = 0
 
 SITE_NAME = "YOUR AIRBASE"  # INPUT YOUR STATION NAME HERE
-SITE_LAT, SITE_LON = 0.0000, -0.0000   # REPLACE WITH YOUR CURRENT LAT/LON FOR ACCURATE RANGING
+SITE_LAT, SITE_LON = 00.00000, -000.00000   # REPLACE WITH YOUR CURRENT LAT/LON FOR ACCURATE RANGING
 R_NM = 3440.065
 _range_idx = ALLOWED_RANGES.index(32)
 
@@ -227,7 +241,7 @@ def draw_top():
 #   left=f"ADSB STATION  |  LINK: {'ACTIVE' if aircraft else 'NO DATA'}  |  TRACKS: {len(aircraft)}  |  RANGE: {rng} NM  |  ALT BAND: ALL  |"
 #   mid =f"  TRAILS {'ON' if trails_on else 'OFF'}  |  DECLUTTER {'ON' if declutter else 'OFF'}  |  {'MILITARY' if mil_only else 'ALL'}"
 #   blit(ui_font,left+mid,C("MINT"),(12,bottbar_rect.y+(bottbar_rect.h-ui_font.get_height())//2))
-    # FPS removed          
+    # FPS removed per request
 def draw_bottom():
     pygame.draw.rect(screen, C("BG"), bottbar_rect)
     rng = current_range_nm()
@@ -434,8 +448,14 @@ def draw_scene():
     cx,cy=center
     trail_layer=pygame.Surface((w,h),pygame.SRCALPHA)
     rng = current_range_nm()
-    acs=[a for a in aircraft if (not mil_only or a.get('_mil'))]
-    acs.sort(key=lambda a:(a.get('_range_nm')is None,a.get('_range_nm')or 0.0))
+    #acs=[a for a in aircraft if (not mil_only or a.get('_mil'))]
+    #acs.sort(key=lambda a:(a.get('_range_nm')is None,a.get('_range_nm')or 0.0))
+        # take a snapshot of aircraft under a lock
+    with _air_lock:
+        acs = list(aircraft)
+    acs = [a for a in acs if (not mil_only or a.get('_mil'))]
+    acs.sort(key=lambda a:(a.get('_range_nm') is None, a.get('_range_nm') or 0.0))
+
 
     for ac in acs:
         rnm=ac.get('_range_nm'); brg_pos=ac.get('_bearing')
@@ -499,18 +519,29 @@ def toggle_fullscreen():
 
 # ---------------- Main ----------------
 def main():
-    global aircraft
-    last_poll=0;running=True
+    running = True
+
+    # start the background polling thread
+    t = threading.Thread(target=_poll_loop, daemon=True)
+    t.start()
+
     while running:
         for e in pygame.event.get():
-            if e.type==pygame.QUIT:running=False
-            elif e.type==pygame.KEYDOWN:handle_key(e.key)
-        now=time.time()
-        if now-last_poll>POLL_SECS:
-            aircraft=preprocess(fetch_adsb());last_poll=now
+            if e.type == pygame.QUIT:
+                running = False
+            elif e.type == pygame.KEYDOWN:
+                handle_key(e.key)
+
+        # no blocking fetch here anymore
         draw_scene()
-        pygame.display.flip();clock.tick(FPS)
+        pygame.display.flip()
+        clock.tick(FPS)
+
+    # stop background thread cleanly
+    _stop_evt.set()
+    t.join(timeout=1.0)
     pygame.quit()
+
 
 if __name__=="__main__":
     main()
