@@ -35,18 +35,18 @@ The result is a live, polar-style radar centered on your station, displaying all
 ## Color Schemes
 ---
 
+---
 **LIGHTNING**
-
+---
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/0b76dd52-f0c6-49ef-9298-045365bfc3d6" />
-
+---
 **HUNTER**
-
+---
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/71823e1f-5403-4226-ab00-edc5bd06caa8" />
-
+---
 **AMBER**
-
+---
 <img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/15c5e05c-177e-4d24-842a-c156675332b7" />
-
 
 
 ---
