@@ -106,7 +106,7 @@ The result is a live, polar-style radar centered on your station, displaying all
 - 1090 mhz antenna, or 1GHZ-2.4GHZ antenna. 
 
 ---
-## How to Install Pygame
+## Install Pygame
 ---
 
 - **Debian or Ubuntu (Dependencies)**
@@ -121,7 +121,7 @@ The result is a live, polar-style radar centered on your station, displaying all
 
 		python3 -m pip install -U pygame --user
 ---
-## How to use the script?
+## Run the script
 ---
 
 		python3 ADSB-Station.py
@@ -129,7 +129,7 @@ The result is a live, polar-style radar centered on your station, displaying all
 - **Note:** You must have **dump1090** or **tar1090** running to display live aircraft data while the script is active.
 
 ---
-## How to configure ⛯
+## Configuration ⛯
 ---
 
 **The python script contains configuration parameters for full user customization, you can use any text editor to modify the values (advice varies based on text editor used)**
