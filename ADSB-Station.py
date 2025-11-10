@@ -37,12 +37,17 @@ FPS        = 60
 
 # Palettes
 PALETTES = [
-    {"name":"STANDARD","BG":(8,8,10),"NEON":(0,210,120),"NEON_D":(0,180,103),
-     "MINT":(132,255,237),"RINGS":(70,75,80),"ALTROW":(14,18,20),"TRAIL":(220,54,54)},
-    {"name":"NVG","BG":(2,8,4),"NEON":(24,255,120),"NEON_D":(18,214,100),
-     "MINT":(180,255,190),"RINGS":(90,140,100),"ALTROW":(8,20,10),"TRAIL":(250,50,50)},
+    {"name":"STANDARD","BG":(8,8,10),"NEON":(0,190,10),"NEON_D":(0,180,103),
+     "MINT":(40,250,255),"HDR":(200,230,255),
+     "RINGS":(120,125,140),"ALTROW":(14,18,20),"TRAIL":(222,0,0)},
+
+    {"name":"NVG","BG":(0,0,0),"NEON":(0,255,0),"NEON_D":(0,180,0),
+     "MINT":(0,255,0),"HDR":(0,255,0),
+     "RINGS":(0,255,0),"ALTROW":(10,10,10),"TRAIL":(222,0,0)},
+
     {"name":"AMBER","BG":(8,6,2),"NEON":(255,170,30),"NEON_D":(215,140,25),
-     "MINT":(255,230,180),"RINGS":(150,120,80),"ALTROW":(25,18,8),"TRAIL":(255,80,60)}
+     "MINT":(255,230,180),"HDR":(255,210,120),
+     "RINGS":(150,120,80),"ALTROW":(25,18,8),"TRAIL":(222,0,0)}
 ]
 pal_ix = 0
 def C(k): return PALETTES[pal_ix][k]
@@ -521,6 +526,7 @@ def toggle_fullscreen():
 def main():
     running = True
 
+    # start the background polling thread
     t = threading.Thread(target=_poll_loop, daemon=True)
     t.start()
 
@@ -531,10 +537,12 @@ def main():
             elif e.type == pygame.KEYDOWN:
                 handle_key(e.key)
 
+        # no blocking fetch here anymore
         draw_scene()
         pygame.display.flip()
         clock.tick(FPS)
 
+    # stop background thread cleanly
     _stop_evt.set()
     t.join(timeout=1.0)
     pygame.quit()
